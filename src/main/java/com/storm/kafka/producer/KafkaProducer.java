@@ -30,8 +30,9 @@ public class KafkaProducer extends BaseRichSpout {
 			while ((str = bufferedReader.readLine()) != null) {
 				KeyedMessage<String, String> data = new KeyedMessage<String, String>("test", str);
 				producer.send(data);
-				System.out.println("Data ="+str);
+				System.out.println("Data produced: "+str);
 			}
+			producer.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
